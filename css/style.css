@@ -1,0 +1,572 @@
+:root {
+    /* Color Palette */
+    --primary: #4CAF50;
+    --primary-dark: #388E3C;
+    --primary-light: #C8E6C9;
+    --accent: #FF9800;
+    --background: #f5f5f5;
+    --card-bg: #ffffff;
+    --text: #212121;
+    --text-secondary: #757575;
+    --border: #BDBDBD;
+    --error: #F44336;
+    --warning: #FFC107;
+    --success: #8BC34A;
+    --info: #2196F3;
+    
+    /* Sizes */
+    --header-height: 60px;
+    --footer-height: 50px;
+    --border-radius: 12px;
+    --btn-border-radius: 6px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    padding-top: var(--header-height);
+    padding-bottom: var(--footer-height);
+}
+
+/* Header */
+.app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    background-color: var(--primary);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.app-header__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.app-header__logo i {
+    font-size: 1.5rem;
+}
+
+.app-header__logo h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.app-header__settings-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.app-header__settings-btn:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* Main Content */
+.app-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Common Component Styles */
+.env-monitor,
+.live-camera,
+.irrigation-control,
+.lighting-control,
+.ventilation-control,
+.timelapse-viewer,
+.data-visualization {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: 100%;
+}
+
+.env-monitor__header,
+.live-camera__header,
+.irrigation-control__header,
+.lighting-control__header,
+.ventilation-control__header,
+.timelapse-viewer__header,
+.data-visualization__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.env-monitor__header h2,
+.live-camera__header h2,
+.irrigation-control__header h2,
+.lighting-control__header h2,
+.ventilation-control__header h2,
+.timelapse-viewer__header h2,
+.data-visualization__header h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.env-monitor__body,
+.live-camera__body,
+.irrigation-control__body,
+.lighting-control__body,
+.ventilation-control__body,
+.timelapse-viewer__body,
+.data-visualization__body {
+    padding: 1rem;
+    overflow: visible;
+}
+
+.env-monitor__actions,
+.live-camera__actions,
+.irrigation-control__actions,
+.lighting-control__actions,
+.ventilation-control__actions,
+.timelapse-viewer__actions,
+.data-visualization__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+}
+
+.env-monitor__update-time {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-left: auto;
+}
+
+/* Environment Monitor Stats Grid */
+.env-monitor__stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.env-monitor__stat-box {
+    background-color: rgba(0,0,0,0.02);
+    border-radius: var(--btn-border-radius);
+    padding: 1rem;
+    text-align: center;
+}
+
+.env-monitor__stat-icon {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.env-monitor__stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.env-monitor__stat-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Camera Styles */
+.live-camera__container {
+    position: relative;
+    width: 100%;
+    background-color: #000;
+    border-radius: var(--btn-border-radius);
+    overflow: hidden;
+}
+
+.live-camera__feed {
+    width: 100%;
+    display: block;
+}
+
+.live-camera__offline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.25rem;
+}
+
+.live-camera__offline i {
+    font-size: 3rem;
+    color: var(--warning);
+}
+
+/* Status Items for Control Panels */
+.irrigation-control__status,
+.lighting-control__status,
+.ventilation-control__status {
+    margin-bottom: 1rem;
+}
+
+.irrigation-control__status-item,
+.lighting-control__status-item,
+.ventilation-control__status-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.irrigation-control__status-label,
+.lighting-control__status-label,
+.ventilation-control__status-label {
+    min-width: 120px;
+    color: var(--text-secondary);
+}
+
+.irrigation-control__status-value,
+.lighting-control__status-value,
+.ventilation-control__status-value {
+    font-weight: 500;
+}
+
+/* Progress Bar */
+.progress-bar {
+    flex: 1;
+    height: 10px;
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 10px;
+}
+
+.progress-bar__fill {
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 5px;
+}
+
+/* Controls */
+.irrigation-control__actions,
+.lighting-control__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+}
+
+/* Buttons */
+.ui-button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--btn-border-radius);
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.ui-button:hover {
+    background-color: var(--primary-dark);
+}
+
+.ui-button--secondary {
+    background-color: var(--text-secondary);
+}
+
+.ui-button--secondary:hover {
+    background-color: var(--text);
+}
+
+/* Input Group */
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.input-group__label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.input-group__input {
+    width: 80px;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--btn-border-radius);
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-switch__label {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.toggle-switch__input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.toggle-switch__slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+.toggle-switch__input:checked + .toggle-switch__slider {
+    background-color: var(--primary);
+}
+
+.toggle-switch__input:checked + .toggle-switch__slider:before {
+    transform: translateX(24px);
+}
+
+.toggle-switch__slider--round {
+    border-radius: 34px;
+}
+
+.toggle-switch__slider--round:before {
+    border-radius: 50%;
+}
+
+/* Icon Button */
+.ui-button--icon {
+    background: none;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: var(--text);
+}
+
+.ui-button--icon:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Timelapse */
+.timelapse-viewer__container {
+    position: relative;
+    width: 100%;
+    background-color: #000;
+    border-radius: var(--btn-border-radius);
+    overflow: hidden;
+}
+
+.timelapse-viewer__image {
+    width: 100%;
+    display: block;
+}
+
+.timelapse-viewer__controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 0 0 var(--btn-border-radius) var(--btn-border-radius);
+}
+
+.timelapse-viewer__date {
+    font-weight: 500;
+    min-width: 100px;
+    text-align: center;
+}
+
+.timelapse-viewer__timestamp {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    min-width: 50px;
+    text-align: right;
+}
+
+/* Range Slider */
+.range-slider {
+    position: relative;
+    flex: 1;
+    height: 6px;
+    background-color: var(--border);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Chart */
+.data-visualization__chart-container {
+    width: 100%;
+    height: 300px;
+}
+
+.data-visualization__select {
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--btn-border-radius);
+    background-color: white;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+.app-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--footer-height);
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    z-index: 900;
+}
+
+.app-footer__system-status {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+.app-footer__time {
+    color: var(--text);
+}
+
+.app-footer__uptime--online {
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.app-footer__uptime--online::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background-color: var(--success);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.app-footer__version {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Controls Container */
+.controls-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+    .env-monitor__stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .env-monitor__stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .controls-container {
+        flex-direction: row;
+    }
+    
+    .irrigation-control,
+    .lighting-control,
+    .ventilation-control {
+        flex: 1;
+        min-height: 340px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .irrigation-control__body,
+    .lighting-control__body,
+    .ventilation-control__body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .irrigation-control__status,
+    .lighting-control__status,
+    .ventilation-control__status {
+        flex: 1;
+    }
+}
+
+@media (min-width: 1024px) {
+    .env-monitor__stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

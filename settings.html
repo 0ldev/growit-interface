@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowIT Settings</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-leaf"></i>
+            <h1>GrowIT</h1>
+        </div>
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+    </header>
+
+    <main class="settings-main">
+        <h1 class="settings-title">System Settings</h1>
+        
+        <div class="tab-container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="system">System</button>
+                <button class="tab-btn" data-tab="irrigation">Irrigation</button>
+                <button class="tab-btn" data-tab="lighting">Lighting</button>
+                <button class="tab-btn" data-tab="ventilation">Ventilation</button>
+                <button class="tab-btn" data-tab="sensors">Sensors</button>
+            </div>
+            
+            <div class="tab-content">
+                <!-- System Tab -->
+                <div class="tab-pane active" id="system">
+                    <h2>System Configuration</h2>
+                    <div class="settings-form">
+                        <h3>General Settings</h3>
+                        <div class="form-group">
+                            <label for="system-name">System Name</label>
+                            <input type="text" id="system-name" placeholder="GrowIT Cannabis Controller">
+                        </div>
+                        <div class="form-group">
+                            <label for="timezone">Timezone</label>
+                            <select id="timezone">
+                                <option value="UTC">UTC</option>
+                                <option value="America/New_York">America/New_York</option>
+                                <option value="America/Chicago">America/Chicago</option>
+                                <option value="America/Denver">America/Denver</option>
+                                <option value="America/Los_Angeles">America/Los_Angeles</option>
+                                <option value="Europe/London">Europe/London</option>
+                                <option value="Europe/Paris">Europe/Paris</option>
+                                <option value="Asia/Tokyo">Asia/Tokyo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="data-logging-interval">Data Logging Interval (seconds)</label>
+                            <input type="number" id="data-logging-interval" min="10" max="3600">
+                        </div>
+
+                        <h3>Security</h3>
+                        <div class="form-group">
+                            <label for="admin-username">Admin Username</label>
+                            <input type="text" id="admin-username">
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-password">Admin Password</label>
+                            <input type="password" id="admin-password">
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="allow-internet-access">
+                                <label for="allow-internet-access">Allow Internet Access</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="enable-ssl">
+                                <label for="enable-ssl">Enable SSL (HTTPS)</label>
+                            </div>
+                        </div>
+
+                        <h3>Network Configuration</h3>
+                        <div class="form-group">
+                            <label for="wifi-ssid">WiFi SSID</label>
+                            <input type="text" id="wifi-ssid">
+                        </div>
+                        <div class="form-group">
+                            <label for="wifi-password">WiFi Password</label>
+                            <input type="password" id="wifi-password">
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="ap-fallback">
+                                <label for="ap-fallback">Enable AP Fallback</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ap-ssid">AP SSID</label>
+                            <input type="text" id="ap-ssid" placeholder="GrowIT_AP">
+                        </div>
+                        <div class="form-group">
+                            <label for="ap-password">AP Password</label>
+                            <input type="password" id="ap-password">
+                        </div>
+                        <div class="form-group">
+                            <label for="hostname">Hostname</label>
+                            <input type="text" id="hostname" placeholder="growit">
+                        </div>
+
+                        <h3>Storage Management</h3>
+                        <div class="form-group">
+                            <label for="sd-cs-pin">SD Card CS Pin</label>
+                            <input type="number" id="sd-cs-pin" min="0" max="40">
+                        </div>
+                        
+                        <h4>Database</h4>
+                        <div class="form-group">
+                            <label for="db-max-size">Maximum Database Size (MB)</label>
+                            <input type="number" id="db-max-size" min="10" max="2000">
+                        </div>
+                        <div class="form-group">
+                            <label for="vacuum-interval">Vacuum Interval (hours)</label>
+                            <input type="number" id="vacuum-interval" min="1" max="168">
+                        </div>
+                        <div class="form-group">
+                            <label for="backup-interval">Backup Interval (days)</label>
+                            <input type="number" id="backup-interval" min="1" max="30">
+                        </div>
+                        
+                        <h4>Data Retention</h4>
+                        <div class="form-group">
+                            <label for="sensor-retention">Sensor Data (days)</label>
+                            <input type="number" id="sensor-retention" min="1" max="365">
+                        </div>
+                        <div class="form-group">
+                            <label for="images-retention">Images (days)</label>
+                            <input type="number" id="images-retention" min="1" max="365">
+                        </div>
+                        <div class="form-group">
+                            <label for="timelapse-retention">Timelapse (days)</label>
+                            <input type="number" id="timelapse-retention" min="1" max="365">
+                        </div>
+                        
+                        <h3>Alert Settings</h3>
+                        <h4>Environmental Thresholds</h4>
+                        <div class="form-group">
+                            <label for="temp-high">High Temperature Alert (°C)</label>
+                            <input type="number" id="temp-high" min="0" max="50" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="temp-low">Low Temperature Alert (°C)</label>
+                            <input type="number" id="temp-low" min="0" max="50" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="humidity-high">High Humidity Alert (%)</label>
+                            <input type="number" id="humidity-high" min="0" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="humidity-low">Low Humidity Alert (%)</label>
+                            <input type="number" id="humidity-low" min="0" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="soil-low">Low Soil Moisture Alert (%)</label>
+                            <input type="number" id="soil-low" min="0" max="100">
+                        </div>
+                        
+                        <h4>Water Level Alerts</h4>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="water-level-alert">
+                                <label for="water-level-alert">Enable Water Level Alerts</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="water-critical">Critical Water Level (%)</label>
+                            <input type="number" id="water-critical" min="1" max="50">
+                        </div>
+                        
+                        <h3>Configuration Management</h3>
+                        <div class="form-group button-group">
+                            <button class="btn" id="exportConfigBtn">Export Configuration</button>
+                            <button class="btn" id="importConfigBtn">Import Configuration</button>
+                            <input type="file" id="configFileInput" accept=".yaml" style="display: none;">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-warning" id="resetConfigBtn">Reset to Defaults</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Irrigation Tab -->
+                <div class="tab-pane" id="irrigation">
+                    <h2>Irrigation Configuration</h2>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="irrigation-enabled">
+                                <label for="irrigation-enabled">Enable Irrigation System</label>
+                            </div>
+                        </div>
+                        <h3>Pump Settings</h3>
+                        <div class="form-group">
+                            <label for="pump-pin">Pump Control Pin</label>
+                            <input type="number" id="pump-pin" min="0" max="40">
+                        </div>
+                        <div class="form-group">
+                            <label for="pump-flow-rate">Flow Rate (ml/second)</label>
+                            <input type="number" id="pump-flow-rate" min="0.1" max="10" step="0.1">
+                        </div>
+                        <button class="btn" id="runPumpCalibrationBtn">Run Pump Calibration</button>
+
+                        <h3>Water Tank Settings</h3>
+                        <div class="form-group">
+                            <label for="tank-capacity">Tank Capacity (liters)</label>
+                            <input type="number" id="tank-capacity" min="1" max="1000" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="current-level">Current Water Level (liters)</label>
+                            <input type="number" id="current-level" min="0" max="1000" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="critical-level">Critical Level (liters)</label>
+                            <input type="number" id="critical-level" min="0.1" max="10" step="0.1">
+                        </div>
+                        
+                        <h3>Irrigation Mode</h3>
+                        <div class="form-group">
+                            <label for="irrigation-mode">Mode</label>
+                            <select id="irrigation-mode">
+                                <option value="threshold">Threshold-based</option>
+                                <option value="schedule">Schedule-based</option>
+                            </select>
+                        </div>
+                        
+                        <div id="threshold-settings">
+                            <h3>Threshold Settings</h3>
+                            <div class="form-group">
+                                <label for="soil-moisture-min">Min Soil Moisture (%)</label>
+                                <input type="number" id="soil-moisture-min" min="0" max="100">
+                            </div>
+                            <div class="form-group">
+                                <label for="soil-moisture-max">Target Soil Moisture (%)</label>
+                                <input type="number" id="soil-moisture-max" min="0" max="100">
+                            </div>
+                            <div class="form-group">
+                                <label for="watering-amount">Watering Amount (ml)</label>
+                                <input type="number" id="watering-amount" min="10" max="1000">
+                            </div>
+                            <div class="form-group">
+                                <label for="min-interval">Minimum Interval (seconds)</label>
+                                <input type="number" id="min-interval" min="60" max="86400">
+                            </div>
+                        </div>
+                        
+                        <div id="schedule-settings" style="display:none;">
+                            <h3>Schedule Settings</h3>
+                            <div id="watering-schedule">
+                                <!-- Watering schedule entries will be generated dynamically -->
+                            </div>
+                            <button class="btn" id="addScheduleEntry">Add Schedule Entry</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lighting Tab -->
+                <div class="tab-pane" id="lighting">
+                    <h2>Lighting Configuration</h2>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="lighting-enabled">
+                                <label for="lighting-enabled">Enable Lighting Control</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="light-relay-pin">Light Control Pin</label>
+                            <input type="number" id="light-relay-pin" min="0" max="40">
+                        </div>
+                        <div class="form-group">
+                            <label for="lighting-schedule-mode">Schedule Mode</label>
+                            <select id="lighting-schedule-mode">
+                                <option value="daily">Daily (Same every day)</option>
+                                <option value="advanced">Advanced (Growth phase specific)</option>
+                            </select>
+                        </div>
+                        
+                        <div id="daily-light-settings">
+                            <h3>Daily Schedule</h3>
+                            <div class="form-group">
+                                <label for="light-on-time">Lights On Time</label>
+                                <input type="time" id="light-on-time">
+                            </div>
+                            <div class="form-group">
+                                <label for="light-off-time">Lights Off Time</label>
+                                <input type="time" id="light-off-time">
+                            </div>
+                        </div>
+                        
+                        <div id="advanced-light-settings" style="display:none;">
+                            <h3>Advanced Schedule</h3>
+                            <div class="form-group">
+                                <label>Current Growth Phase</label>
+                                <div class="radio-group">
+                                    <input type="radio" name="growth-phase" id="vegetative" value="vegetative">
+                                    <label for="vegetative">Vegetative</label>
+                                    <input type="radio" name="growth-phase" id="flowering" value="flowering">
+                                    <label for="flowering">Flowering</label>
+                                </div>
+                            </div>
+                            
+                            <h4>Vegetative Phase</h4>
+                            <div class="form-group">
+                                <label for="veg-on-time">Lights On Time</label>
+                                <input type="time" id="veg-on-time">
+                            </div>
+                            <div class="form-group">
+                                <label for="veg-off-time">Lights Off Time</label>
+                                <input type="time" id="veg-off-time">
+                            </div>
+                            
+                            <h4>Flowering Phase</h4>
+                            <div class="form-group">
+                                <label for="flower-on-time">Lights On Time</label>
+                                <input type="time" id="flower-on-time">
+                            </div>
+                            <div class="form-group">
+                                <label for="flower-off-time">Lights Off Time</label>
+                                <input type="time" id="flower-off-time">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ventilation Tab -->
+                <div class="tab-pane" id="ventilation">
+                    <h2>Ventilation Configuration</h2>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="ventilation-enabled">
+                                <label for="ventilation-enabled">Enable Ventilation Control</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fan-pin">Fan Control Pin</label>
+                            <input type="number" id="fan-pin" min="0" max="40">
+                        </div>
+                        <div class="form-group">
+                            <label for="fan-control-type">Fan Control Type</label>
+                            <select id="fan-control-type">
+                                <option value="pwm">PWM (Variable Speed)</option>
+                                <option value="on_off">On/Off</option>
+                            </select>
+                        </div>
+                        
+                        <h3>Fan Speed Settings</h3>
+                        <div class="form-group">
+                            <label for="min-rpm">Minimum RPM</label>
+                            <input type="number" id="min-rpm" min="0" max="5000">
+                        </div>
+                        <div class="form-group">
+                            <label for="max-rpm">Maximum RPM</label>
+                            <input type="number" id="max-rpm" min="0" max="5000">
+                        </div>
+                        <div class="form-group">
+                            <label for="default-rpm">Default RPM</label>
+                            <input type="number" id="default-rpm" min="0" max="5000">
+                        </div>
+                        
+                        <h3>Temperature Control</h3>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="temp-control-enabled">
+                                <label for="temp-control-enabled">Enable Temperature-based Control</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="min-temp">Min Temperature (°C)</label>
+                            <input type="number" id="min-temp" min="0" max="40" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="optimal-temp">Optimal Temperature (°C)</label>
+                            <input type="number" id="optimal-temp" min="0" max="40" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="max-temp">Max Temperature (°C)</label>
+                            <input type="number" id="max-temp" min="0" max="40" step="0.1">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sensors Tab -->
+                <div class="tab-pane" id="sensors">
+                    <h2>Sensors Configuration</h2>
+                    <div class="settings-form">
+                        <h3>DHT22 Temperature/Humidity Sensor</h3>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="dht22-enabled">
+                                <label for="dht22-enabled">Enable DHT22 Sensor</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dht22-pin">Pin</label>
+                            <input type="number" id="dht22-pin" min="0" max="40">
+                        </div>
+                        <div class="form-group">
+                            <label for="dht22-interval">Reading Interval (seconds)</label>
+                            <input type="number" id="dht22-interval" min="5" max="3600">
+                        </div>
+                        
+                        <h3>Soil Moisture Sensor</h3>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="soil-sensor-enabled">
+                                <label for="soil-sensor-enabled">Enable Soil Moisture Sensor</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="soil-pin">Pin</label>
+                            <input type="number" id="soil-pin" min="0" max="40">
+                        </div>
+                        <div class="form-group">
+                            <label for="soil-interval">Reading Interval (seconds)</label>
+                            <input type="number" id="soil-interval" min="5" max="3600">
+                        </div>
+                        <div class="form-group">
+                            <label for="soil-dry-value">Dry Calibration Value</label>
+                            <input type="number" id="soil-dry-value" min="0" max="4095">
+                        </div>
+                        <div class="form-group">
+                            <label for="soil-wet-value">Wet Calibration Value</label>
+                            <input type="number" id="soil-wet-value" min="0" max="4095">
+                        </div>
+                        
+                        <h3>pH Sensor</h3>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="ph-sensor-enabled">
+                                <label for="ph-sensor-enabled">Enable pH Sensor</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ph-pin">Pin</label>
+                            <input type="number" id="ph-pin" min="0" max="40">
+                        </div>
+                        <div class="form-group">
+                            <label for="ph-interval">Reading Interval (seconds)</label>
+                            <input type="number" id="ph-interval" min="5" max="3600">
+                        </div>
+                        <div class="form-group">
+                            <label for="ph-samples">Samples per Reading</label>
+                            <input type="number" id="ph-samples" min="1" max="100">
+                        </div>
+                        
+                        <h3>Light Sensor</h3>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="light-sensor-enabled">
+                                <label for="light-sensor-enabled">Enable Light Sensor</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="light-pin">Pin</label>
+                            <input type="number" id="light-pin" min="0" max="40">
+                        </div>
+                        
+                        <h3>Camera</h3>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="camera-enabled">
+                                <label for="camera-enabled">Enable Camera</label>
+                            </div>
+                        </div>
+                        <h4>Camera Settings</h4>
+                        <div class="form-group">
+                            <label for="camera-framesize">Frame Size</label>
+                            <select id="camera-framesize">
+                                <option value="QVGA">QVGA (320x240)</option>
+                                <option value="VGA">VGA (640x480)</option>
+                                <option value="SVGA">SVGA (800x600)</option>
+                                <option value="XGA">XGA (1024x768)</option>
+                                <option value="HD">HD (1280x720)</option>
+                                <option value="SXGA">SXGA (1280x1024)</option>
+                                <option value="UXGA">UXGA (1600x1200)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="camera-quality">Quality (0-63, lower is better)</label>
+                            <input type="number" id="camera-quality" min="0" max="63">
+                        </div>
+                        <div class="form-group">
+                            <label for="camera-brightness">Brightness</label>
+                            <input type="range" min="-2" max="2" step="1" id="camera-brightness">
+                            <span id="brightness-value">0</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="camera-contrast">Contrast</label>
+                            <input type="range" min="-2" max="2" step="1" id="camera-contrast">
+                            <span id="contrast-value">0</span>
+                        </div>
+                        
+                        <h4>Timelapse Settings</h4>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="timelapse-enabled">
+                                <label for="timelapse-enabled">Enable Timelapse</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="timelapse-interval">Interval (minutes)</label>
+                            <input type="number" id="timelapse-interval" min="1" max="1440">
+                        </div>
+                        <div class="form-group">
+                            <label for="timelapse-start">Start Time</label>
+                            <input type="time" id="timelapse-start">
+                        </div>
+                        <div class="form-group">
+                            <label for="timelapse-end">End Time</label>
+                            <input type="time" id="timelapse-end">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="settings-actions">
+            <div style="width: 100%; text-align: center;">
+                <button class="btn btn-secondary" id="cancelSettingsBtn">Cancel</button>
+                <button class="btn" id="saveSettingsBtn">Save Settings</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="system-status">
+            <span id="systemTime">--:--:--</span>
+            <span id="systemUptime" class="status-online">Uptime: 0d 00:00:00</span>
+        </div>
+        <div class="version">
+            GrowIT v1.0
+        </div>
+    </footer>
+
+    <script src="js/settings.js"></script>
+</body>
+</html>

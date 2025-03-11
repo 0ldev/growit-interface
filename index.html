@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowIT Cannabis Controller</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="app-header__logo">
+            <i class="fas fa-leaf"></i>
+            <h1>GrowIT</h1>
+        </div>
+        <button id="settingsBtn" class="app-header__settings-btn">
+            <i class="fas fa-cog"></i>
+        </button>
+    </header>
+
+    <main class="app-main">
+        <!-- Environment Monitoring Section -->
+        <section class="env-monitor" id="environment">
+            <div class="env-monitor__header">
+                <h2><i class="fas fa-thermometer-half"></i> Environment</h2>
+                <div class="env-monitor__actions">
+                    <span class="env-monitor__update-time">Last update: <span id="envUpdateTime">--:--:--</span></span>
+                </div>
+            </div>
+            <div class="env-monitor__body">
+                <div class="env-monitor__stats-grid">
+                    <div class="env-monitor__stat-box">
+                        <div class="env-monitor__stat-icon"><i class="fas fa-temperature-high"></i></div>
+                        <div class="env-monitor__stat-value"><span id="temperature">--</span>°C</div>
+                        <div class="env-monitor__stat-label">Temperature</div>
+                    </div>
+                    <div class="env-monitor__stat-box">
+                        <div class="env-monitor__stat-icon"><i class="fas fa-tint"></i></div>
+                        <div class="env-monitor__stat-value"><span id="humidity">--</span>%</div>
+                        <div class="env-monitor__stat-label">Humidity</div>
+                    </div>
+                    <div class="env-monitor__stat-box">
+                        <div class="env-monitor__stat-icon"><i class="fas fa-wind"></i></div>
+                        <div class="env-monitor__stat-value"><span id="ventSpeed">--</span>%</div>
+                        <div class="env-monitor__stat-label">Ventilation</div>
+                    </div>
+                    <div class="env-monitor__stat-box">
+                        <div class="env-monitor__stat-icon"><i class="fas fa-water"></i></div>
+                        <div class="env-monitor__stat-value"><span id="soilMoisture">--</span>%</div>
+                        <div class="env-monitor__stat-label">Soil Moisture</div>
+                    </div>
+                    <div class="env-monitor__stat-box">
+                        <div class="env-monitor__stat-icon"><i class="fas fa-flask"></i></div>
+                        <div class="env-monitor__stat-value"><span id="phValue">--</span> pH</div>
+                        <div class="env-monitor__stat-label">pH Level</div>
+                    </div>
+                    <div class="env-monitor__stat-box" id="lightSensorBox">
+                        <div class="env-monitor__stat-icon"><i class="fas fa-sun"></i></div>
+                        <div class="env-monitor__stat-value"><span id="lightIntensity">--</span>%</div>
+                        <div class="env-monitor__stat-label">Light</div>
+                    </div>
+                    <div class="env-monitor__stat-box">
+                        <div class="env-monitor__stat-icon"><i class="fas fa-fill-drip"></i></div>
+                        <div class="env-monitor__stat-value"><span id="waterLevel">--</span>L</div>
+                        <div class="env-monitor__stat-label">Water Level</div>
+                    </div>
+                    <div class="env-monitor__stat-box" id="futureSensorBox">
+                        <div class="env-monitor__stat-icon"><i class="fas fa-microchip"></i></div>
+                        <div class="env-monitor__stat-value"><span id="futureSensor">--</span></div>
+                        <div class="env-monitor__stat-label">Future Sensor</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Camera Feed Section -->
+        <section class="live-camera" id="camera">
+            <div class="live-camera__header">
+                <h2><i class="fas fa-video"></i> Live Camera</h2>
+                <div class="live-camera__actions">
+                    <button class="ui-button--icon" id="refreshCameraBtn"><i class="fas fa-sync-alt"></i></button>
+                    <button class="ui-button--icon" id="fullscreenCameraBtn"><i class="fas fa-expand"></i></button>
+                </div>
+            </div>
+            <div class="live-camera__body">
+                <div class="live-camera__container">
+                    <img id="cameraFeed" src="placeholder-camera.jpg" alt="Camera Feed" class="live-camera__feed">
+                    <div class="live-camera__offline">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Camera offline</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Irrigation Control Section -->
+        <section class="controls-container">
+            <section class="irrigation-control" id="irrigation">
+                <div class="irrigation-control__header">
+                    <h2><i class="fas fa-faucet"></i> Irrigation</h2>
+                </div>
+                <div class="irrigation-control__body">
+                    <div class="irrigation-control__status">
+                        <div class="irrigation-control__status-item">
+                            <span class="irrigation-control__status-label">Mode:</span>
+                            <span class="irrigation-control__status-value" id="irrigationMode">--</span>
+                        </div>
+                        <div class="irrigation-control__status-item">
+                            <span class="irrigation-control__status-label">Water Level:</span>
+                            <div class="progress-bar">
+                                <div id="waterLevelBar" class="progress-bar__fill"></div>
+                            </div>
+                            <span class="irrigation-control__status-value"><span id="waterLevel">--</span>L</span>
+                        </div>
+                        <div class="irrigation-control__status-item">
+                            <span class="irrigation-control__status-label">Last Watering:</span>
+                            <span class="irrigation-control__status-value" id="lastWatering">--</span>
+                        </div>
+                        <div class="irrigation-control__status-item">
+                            <span class="irrigation-control__status-label">Next Watering:</span>
+                            <span class="irrigation-control__status-value" id="nextWatering">--</span>
+                        </div>
+                    </div>
+                    <div class="irrigation-control__actions">
+                        <button class="ui-button" id="manualWaterBtn">Water Now</button>
+                        <div class="input-group">
+                            <label for="waterAmount" class="input-group__label">Amount (ml):</label>
+                            <input type="number" id="waterAmount" min="10" max="500" value="100" class="input-group__input">
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+            <!-- Lighting Control Section -->
+            <section class="lighting-control" id="lighting">
+                <div class="lighting-control__header">
+                    <h2><i class="fas fa-lightbulb"></i> Lighting</h2>
+                </div>
+                <div class="lighting-control__body">
+                    <div class="lighting-control__status">
+                        <div class="lighting-control__status-item">
+                            <span class="lighting-control__status-label">Status:</span>
+                            <span class="lighting-control__status-value" id="lightStatus">--</span>
+                        </div>
+                        <div class="lighting-control__status-item">
+                            <span class="lighting-control__status-label">Phase:</span>
+                            <span class="lighting-control__status-value" id="growthPhase">--</span>
+                        </div>
+                        <div class="lighting-control__status-item">
+                            <span class="lighting-control__status-label">On Time:</span>
+                            <span class="lighting-control__status-value" id="lightOnTime">--</span>
+                        </div>
+                        <div class="lighting-control__status-item">
+                            <span class="lighting-control__status-label">Off Time:</span>
+                            <span class="lighting-control__status-value" id="lightOffTime">--</span>
+                        </div>
+                    </div>
+                    <div class="lighting-control__actions">
+                        <button class="ui-button" id="lightOnBtn">Turn On</button>
+                        <button class="ui-button ui-button--secondary" id="lightOffBtn">Turn Off</button>
+                    </div>
+                </div>
+            </section>
+    
+            <!-- Ventilation Control Section -->
+            <section class="ventilation-control" id="ventilation">
+                <div class="ventilation-control__header">
+                    <h2><i class="fas fa-wind"></i> Ventilation</h2>
+                </div>
+                <div class="ventilation-control__body">
+                    <div class="ventilation-control__status">
+                        <div class="ventilation-control__status-item">
+                            <span class="ventilation-control__status-label">Fan Speed:</span>
+                            <div class="progress-bar">
+                                <div id="fanSpeedBar" class="progress-bar__fill"></div>
+                            </div>
+                            <span class="ventilation-control__status-value"><span id="fanSpeed">--</span> RPM</span>
+                        </div>
+                        <div class="ventilation-control__status-item">
+                            <span class="ventilation-control__status-label">Control Mode:</span>
+                            <span class="ventilation-control__status-value" id="fanControlMode">--</span>
+                        </div>
+                    </div>
+                    <div class="ventilation-control__actions">
+                        <button class="ui-button" id="ventilationOnBtn">Turn On</button>
+                        <button class="ui-button ui-button--secondary" id="ventilationOffBtn">Turn Off</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Time-lapse Section -->
+        <section class="timelapse-viewer" id="timelapse">
+            <div class="timelapse-viewer__header">
+                <h2><i class="fas fa-film"></i> Time-lapse</h2>
+                <div class="timelapse-viewer__actions">
+                    <button class="ui-button--icon" id="previousDayBtn"><i class="fas fa-chevron-left"></i></button>
+                    <span id="timelapseDate" class="timelapse-viewer__date">Today</span>
+                    <button class="ui-button--icon" id="nextDayBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="timelapse-viewer__body">
+                <div class="timelapse-viewer__container">
+                    <img id="timelapseImage" src="placeholder-timelapse.jpg" alt="Time-lapse" class="timelapse-viewer__image">
+                    <div class="timelapse-viewer__controls">
+                        <button class="ui-button--icon" id="playTimelapseBtn"><i class="fas fa-play"></i></button>
+                        <input type="range" min="0" max="100" value="0" class="range-slider" id="timelapseSlider">
+                        <span id="timelapseTimestamp" class="timelapse-viewer__timestamp">00:00</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Visualization Section -->
+        <section class="data-visualization" id="dataViz">
+            <div class="data-visualization__header">
+                <h2><i class="fas fa-chart-line"></i> Trends</h2>
+                <div class="data-visualization__actions">
+                    <select id="timeRangeSelect" class="data-visualization__select">
+                        <option value="24h">24 Hours</option>
+                        <option value="7d">7 Days</option>
+                        <option value="30d">30 Days</option>
+                    </select>
+                </div>
+            </div>
+            <div class="data-visualization__body">
+                <div class="data-visualization__chart-container">
+                    <canvas id="environmentChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="app-footer__system-status">
+            <span id="systemTime" class="app-footer__time">--:--:--</span>
+            <span id="systemUptime" class="app-footer__uptime app-footer__uptime--online">Uptime: 0d 00:00:00</span>
+        </div>
+        <div class="app-footer__version">
+            GrowIT v1.0
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
