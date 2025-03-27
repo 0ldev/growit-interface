@@ -15,7 +15,7 @@
 }
 
 .back-btn {
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -182,6 +182,8 @@
 .settings-actions button {
     display: inline-block;
     margin: 0 10px;
+    padding: 0.75rem 1.5rem; /* Medium padding */
+    font-size: 1.2rem; /* Medium font size */
 }
 
 /* Button Group Styling */
@@ -249,5 +251,12 @@
         width: 100%;
         padding: 0.75rem; /* Added padding for better spacing */
         margin: 0.5rem 0; /* Added margin to ensure vertical spacing and centering */
+    }
+}
+
+@media (min-width: 1024px) {
+    .settings-actions button {
+        font-size: 1.5rem; /* Increase font size */
+        padding: 1rem 2rem; /* Increase padding */
     }
 }

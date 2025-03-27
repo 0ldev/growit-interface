@@ -10,10 +10,6 @@
 </head>
 <body>
     <header>
-        <div class="logo">
-            <i class="fas fa-leaf"></i>
-            <h1>GrowIT</h1>
-        </div>
         <a href="index.html" class="back-btn">
             <i class="fas fa-arrow-left"></i> Back to Dashboard
         </a>
@@ -104,44 +100,6 @@
                             <label for="ap-password">AP Password</label>
                             <input type="password" id="ap-password">
                         </div>
-                        <div class="form-group">
-                            <label for="hostname">Hostname</label>
-                            <input type="text" id="hostname" placeholder="growit">
-                        </div>
-
-                        <h3>Storage Management</h3>
-                        <div class="form-group">
-                            <label for="sd-cs-pin">SD Card CS Pin</label>
-                            <input type="number" id="sd-cs-pin" min="0" max="40">
-                        </div>
-                        
-                        <h4>Database</h4>
-                        <div class="form-group">
-                            <label for="db-max-size">Maximum Database Size (MB)</label>
-                            <input type="number" id="db-max-size" min="10" max="2000">
-                        </div>
-                        <div class="form-group">
-                            <label for="vacuum-interval">Vacuum Interval (hours)</label>
-                            <input type="number" id="vacuum-interval" min="1" max="168">
-                        </div>
-                        <div class="form-group">
-                            <label for="backup-interval">Backup Interval (days)</label>
-                            <input type="number" id="backup-interval" min="1" max="30">
-                        </div>
-                        
-                        <h4>Data Retention</h4>
-                        <div class="form-group">
-                            <label for="sensor-retention">Sensor Data (days)</label>
-                            <input type="number" id="sensor-retention" min="1" max="365">
-                        </div>
-                        <div class="form-group">
-                            <label for="images-retention">Images (days)</label>
-                            <input type="number" id="images-retention" min="1" max="365">
-                        </div>
-                        <div class="form-group">
-                            <label for="timelapse-retention">Timelapse (days)</label>
-                            <input type="number" id="timelapse-retention" min="1" max="365">
-                        </div>
                         
                         <h3>Alert Settings</h3>
                         <h4>Environmental Thresholds</h4>
@@ -201,10 +159,6 @@
                             </div>
                         </div>
                         <h3>Pump Settings</h3>
-                        <div class="form-group">
-                            <label for="pump-pin">Pump Control Pin</label>
-                            <input type="number" id="pump-pin" min="0" max="40">
-                        </div>
                         <div class="form-group">
                             <label for="pump-flow-rate">Flow Rate (ml/second)</label>
                             <input type="number" id="pump-flow-rate" min="0.1" max="10" step="0.1">
@@ -275,10 +229,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="light-relay-pin">Light Control Pin</label>
-                            <input type="number" id="light-relay-pin" min="0" max="40">
-                        </div>
-                        <div class="form-group">
                             <label for="lighting-schedule-mode">Schedule Mode</label>
                             <select id="lighting-schedule-mode">
                                 <option value="daily">Daily (Same every day)</option>
@@ -344,10 +294,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="fan-pin">Fan Control Pin</label>
-                            <input type="number" id="fan-pin" min="0" max="40">
-                        </div>
-                        <div class="form-group">
                             <label for="fan-control-type">Fan Control Type</label>
                             <select id="fan-control-type">
                                 <option value="pwm">PWM (Variable Speed)</option>
@@ -403,10 +349,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="dht22-pin">Pin</label>
-                            <input type="number" id="dht22-pin" min="0" max="40">
-                        </div>
-                        <div class="form-group">
                             <label for="dht22-interval">Reading Interval (seconds)</label>
                             <input type="number" id="dht22-interval" min="5" max="3600">
                         </div>
@@ -417,10 +359,6 @@
                                 <input type="checkbox" id="soil-sensor-enabled">
                                 <label for="soil-sensor-enabled">Enable Soil Moisture Sensor</label>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="soil-pin">Pin</label>
-                            <input type="number" id="soil-pin" min="0" max="40">
                         </div>
                         <div class="form-group">
                             <label for="soil-interval">Reading Interval (seconds)</label>
@@ -443,10 +381,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="ph-pin">Pin</label>
-                            <input type="number" id="ph-pin" min="0" max="40">
-                        </div>
-                        <div class="form-group">
                             <label for="ph-interval">Reading Interval (seconds)</label>
                             <input type="number" id="ph-interval" min="5" max="3600">
                         </div>
@@ -461,10 +395,6 @@
                                 <input type="checkbox" id="light-sensor-enabled">
                                 <label for="light-sensor-enabled">Enable Light Sensor</label>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="light-pin">Pin</label>
-                            <input type="number" id="light-pin" min="0" max="40">
                         </div>
                         
                         <h3>Camera</h3>
